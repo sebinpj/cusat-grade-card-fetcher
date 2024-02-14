@@ -2,15 +2,46 @@ const puppeteer = require('puppeteer');
 const { convert } = require('url-slug');
 const fs = require('fs').promises; // Use fs promises API directly
 const pino = require('pino');
+const pretty = require('pino-pretty')
 const { SingleBar, Presets } = require('cli-progress'); // Import SingleBar and Presets from cli-progress
+const yargs = require('yargs')
+const { hideBin } = require('yargs/helpers');
 
 // Setup logger
-const logger = pino({
-    level: 'info',
-});
+const logger = pino(pretty({
+    colorize: true,
+}))
 
-const rollNumber = '';
+// Parse command line arguments
+const argv = yargs(hideBin(process.argv))
+    .option('rollNumber', {
+        describe: 'Roll number of the student',
+        demandOption: 'Roll number is required',
+        type: 'string',
+    })
+    .option('path', {
+        describe: 'Path to save the PDFs',
+        default: './',
+        type: 'string',
+    })
+    .help()
+    .alias('help', 'h')
+    .argv;
+
+let rollNumber = argv.rollNumber;
+let path = argv.path;
 let savedMessages = [];
+
+// Before proceeding, ensure the path exists or create it
+async function ensurePathExists(path) {
+    try {
+        await fs.mkdir(path, { recursive: true });
+        logger.info(`Directory ${path} is ready`);
+    } catch (err) {
+        logger.error(`Error creating directory ${path}: ${err}`);
+        throw err;
+    }
+}
 async function initializeBrowser() {
     const browser = await puppeteer.launch({
         headless: true,
@@ -80,7 +111,7 @@ async function findGradeCard(page, element, bar) {
 
     const pageContent = await targetPage.content();
     if (pageContent.includes(rollNumber)) {
-        const pdfPath = `./grade_cards/${fileName}`;
+        const pdfPath = `${path}/${fileName}`;
         const exists = await fs.access(pdfPath).then(() => true).catch(() => false);
         if (!exists) {
             await targetPage.pdf({path: pdfPath});
@@ -103,16 +134,25 @@ async function extractTextFromAnchor(element) {
 
 
 async function main() {
-    const startTime = process.hrtime.bigint();
-    logger.info('CUSAT Grade Card Fetcher started');
-    const browser = await initializeBrowser();
-    await navigateToWebsite(browser);
-    const endTime = process.hrtime.bigint();
-    const executionTimeMs = (endTime - startTime) / BigInt(1e6); // Convert to milliseconds
-    const executionTimeSeconds = Number(executionTimeMs) / 1000; // Convert milliseconds to seconds
-    const minutes = Math.floor(executionTimeSeconds / 60);
-    const seconds = Math.floor(executionTimeSeconds % 60);
-    logger.info(`CUSAT Grade Card Fetcher execution completed in ${minutes}m ${seconds}s`);
+    try {
+        const startTime = process.hrtime.bigint();
+        logger.info('CUSAT Grade Card Fetcher started');
+
+        // Ensure the output path exists
+        await ensurePathExists(path);
+
+        const browser = await initializeBrowser();
+        await navigateToWebsite(browser);
+        const endTime = process.hrtime.bigint();
+        const executionTimeMs = (endTime - startTime) / BigInt(1e6); // Convert to milliseconds
+        const executionTimeSeconds = Number(executionTimeMs) / 1000; // Convert milliseconds to seconds
+        const minutes = Math.floor(executionTimeSeconds / 60);
+        const seconds = Math.floor(executionTimeSeconds % 60);
+        logger.info(`CUSAT Grade Card Fetcher execution completed in ${minutes}m ${seconds}s`);
+    } catch (err) {
+        logger.error(err);
+        process.exit(1); // Exit the process with an error code
+    }
 }
 
 main().catch((err) => {
