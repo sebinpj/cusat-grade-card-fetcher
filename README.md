@@ -1,26 +1,76 @@
 # CUSAT Grade Card Fetcher
 
-This tool is designed to automate the process of fetching grade cards for Cochin University of Science and Technology (CUSAT) students. It leverages Puppeteer for browser automation, along with various other utilities for efficient operation and user interaction.
-
-## Features
-
-- **Automated Grade Card Download:** Automatically navigates to the CUSAT results website, searches for the grade cards using the provided roll number, and downloads them.
-- **Progress Tracking:** Utilizes `cli-progress` to show progress in the terminal during the download process.
-- **Logging:** Implements `pino` and `pino-pretty` for colorful and formatted logging of the process and errors.
-- **Command Line Arguments:** Supports custom command line arguments for roll number and destination path using `yargs`.
+The CUSAT Grade Card Fetcher is a command-line tool designed to automate the process of fetching grade cards for Cochin University of Science and Technology (CUSAT) students. It simplifies the task of downloading grade card PDFs for specified roll numbers.
 
 ## Prerequisites
 
-Before you begin, ensure you have Node.js installed on your machine. This script was developed with Node.js version 14.x or higher in mind.
+- Node.js (v14 or newer recommended)
+- npm (Node Package Manager)
 
 ## Installation
 
-1. Clone the repository or download the source code.
-2. Navigate to the project directory and run `npm install` to install the required dependencies.
+You do not need to install the package locally if you prefer using `npx`. However, if you wish to install it globally on your system, you can do so using npm with the following command:
+
+```bash
+npm install -g cusat-grade-card-fetcher
+```
 
 ## Usage
 
-Run the script with the following command:
+### Using npx (No Installation Required)
+
+To use the tool without installing it, you can run it directly using `npx`:
 
 ```bash
-node index.js --rollNumber="YourRollNumber" --path="./your/custom/path"
+npx cusat-grade-card-fetcher --rollNumber <YourRollNumber> --path <PathToSavePDFs>
+```
+
+### Using Globally Installed Package
+
+If you have installed the package globally, you can run it directly from the command line:
+
+```bash
+cusat-grade-card-fetcher --rollNumber <YourRollNumber> --path <PathToSavePDFs>
+```
+
+### Options
+
+- `--rollNumber` (required): Specifies the roll number of the student for whom you want to fetch the grade cards.
+- `--path` (optional): Specifies the directory path where the PDFs will be saved. Defaults to the current directory.
+
+## Features
+
+- Fetches all available grade cards for a specified roll number.
+- Saves grade cards as PDF files in a specified directory.
+- Utilizes headless browsing for automation.
+- Provides progress feedback through the CLI.
+
+## Examples
+
+Fetching grade cards for roll number 123456 and saving them in the current directory:
+
+```bash
+npx cusat-grade-card-fetcher --rollNumber 123456
+```
+
+Fetching grade cards for roll number 123456 and saving them in a specified directory:
+
+```bash
+npx cusat-grade-card-fetcher --rollNumber 123456 --path /path/to/save
+```
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+The GNU General Public License is a free, copyleft license for software and other kinds of works, which allows the users to freely modify and share all versions of the program. It ensures that the software remains free for all its users. This License allows you to use, share, and modify the software, but it also requires you to make available the source code of modified versions, ensuring the same freedoms are passed on to all users.
+
+For more information on the GNU General Public License v3.0, please visit <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+## Contributions
+
+Contributions are welcome! Please open an issue or submit a pull request with your changes or fixes.
+
+## Support
+
+If you encounter any issues or have questions, please file an issue on the GitHub repository.
