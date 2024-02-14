@@ -4,7 +4,7 @@
   "description": "Fetch the grade cards for CUSAT students",
   "main": "index.js",
   "bin": {
-    "cusat-grade-card-fetcher": "./index.js"
+    "cusat-grade-card-fetcher": "index.js"
   },
   "scripts": {
     "start": "node index.js"
