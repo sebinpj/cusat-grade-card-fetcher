@@ -59,13 +59,17 @@ Fetching grade cards for roll number 123456 and saving them in a specified direc
 npx cusat-grade-card-fetcher --rollNumber 123456 --path /path/to/save
 ```
 
-## License
+## License and Usage Restrictions
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+This project, the CUSAT Grade Card Fetcher, is provided under the GNU General Public License v3.0 (GPL-3.0) with the following additional usage restrictions:
 
-The GNU General Public License is a free, copyleft license for software and other kinds of works, which allows the users to freely modify and share all versions of the program. It ensures that the software remains free for all its users. This License allows you to use, share, and modify the software, but it also requires you to make available the source code of modified versions, ensuring the same freedoms are passed on to all users.
+**Personal Use Only**: This tool is intended solely for the personal use of Cochin University of Science and Technology (CUSAT) students, specifically for fetching grade cards for Old B.Tech courses before the KTU scheme. Any use of this tool for commercial purposes is strictly prohibited. This includes, but is not limited to, using the tool to fetch grade cards for others for a fee, integrating this tool into commercial software or services, and distributing modified versions of this tool for commercial gain.
+
+**Compliance Required**: Users must comply with the terms of the GNU General Public License v3.0, as well as these additional restrictions. Failure to adhere to these terms may result in revocation of your right to use this tool.
 
 For more information on the GNU General Public License v3.0, please visit <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+By using this tool, you acknowledge and agree to these terms and conditions. If you have any questions or concerns about these restrictions, please contact the development team through the GitHub repository.
 
 ## Contributions
 
