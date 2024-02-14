@@ -1,0 +1,18 @@
+{
+  "name": "cusat-grade-card-fetcher",
+  "version": "1.0.0",
+  "description": "Fetch the grade cards for cusat students before the KTU University began",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js | pino-pretty"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "pino": "^8.18.0",
+    "pino-pretty": "^10.3.1",
+    "puppeteer": "^22.0.0",
+    "url-slug": "^4.0.1"
+  }
+}
