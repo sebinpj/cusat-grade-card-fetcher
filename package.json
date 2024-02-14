@@ -1,6 +1,6 @@
 {
   "name": "cusat-grade-card-fetcher",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Fetch the grade cards for CUSAT students",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
+  "author": "Sebin P Johnson",
   "license": "GPL-3.0",
   "dependencies": {
     "cli-progress": "^3.12.0",
@@ -18,5 +18,22 @@
     "puppeteer": "^22.0.0",
     "url-slug": "^4.0.1",
     "yargs": "^17.7.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebinpj/cusat-grade-card-fetcher"
+  },
+  "homepage": "https://github.com/sebinpj/cusat-grade-card-fetcher",
+  "keywords": [
+    "bot",
+    "card",
+    "mark",
+    "grade",
+    "scrapper",
+    "sheet",
+    "cusat",
+    "scrapper-script",
+    "garde-card",
+    "pdf"
+  ]
 }
