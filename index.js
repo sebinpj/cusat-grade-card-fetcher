@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const puppeteer = require('puppeteer');
 const { convert } = require('url-slug');
 const fs = require('fs').promises; // Use fs promises API directly
