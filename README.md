@@ -1,10 +1,10 @@
 # CUSAT Grade Card Fetcher
 
-The CUSAT Grade Card Fetcher is a command-line tool designed to automate the process of fetching grade cards for Cochin University of Science and Technology (CUSAT) students. It simplifies the task of downloading grade card PDFs for specified roll numbers.
+The CUSAT Grade Card Fetcher is a command-line tool designed to automate the process of fetching grade cards for Cochin University of Science and Technology (CUSAT) students. This tool only supports fetching grade cards specifically for Old B.Tech students before the KTU scheme was introduced. It simplifies the task of downloading grade card PDFs for specified roll numbers, focusing solely on the results available at [http://exam.cusat.ac.in/erp5/cusat/Cusat-Home/home_oldresults#](http://exam.cusat.ac.in/erp5/cusat/Cusat-Home/home_oldresults#). This is the only source of data supported by this tool.
 
 ## Prerequisites
 
-- Node.js (v14 or newer recommended)
+- Node.js (v20 or newer recommended)
 - npm (Node Package Manager)
 
 ## Installation
@@ -35,12 +35,12 @@ cusat-grade-card-fetcher --rollNumber <YourRollNumber> --path <PathToSavePDFs>
 
 ### Options
 
-- `--rollNumber` (required): Specifies the roll number of the student for whom you want to fetch the grade cards.
+- `--rollNumber` (required): Specifies the roll number of the student for whom you want to fetch the grade cards. Note that this tool is now tailored to fetch grade cards for Old B.Tech students before the introduction of the KTU scheme.
 - `--path` (optional): Specifies the directory path where the PDFs will be saved. Defaults to the current directory.
 
 ## Features
 
-- Fetches all available grade cards for a specified roll number.
+- **Supports Old B.Tech Students**: Fetches grade cards specifically for Old B.Tech students before the KTU scheme, based on the results available at the specified link.
 - Saves grade cards as PDF files in a specified directory.
 - Utilizes headless browsing for automation.
 - Provides progress feedback through the CLI.
